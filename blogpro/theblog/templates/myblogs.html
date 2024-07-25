@@ -1,0 +1,30 @@
+<!-- Page to retrieve the user's blog posts -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blogs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">MY BLOGS</h1>
+        {% for blog in blogs %}
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h3>{{ blog.title }}</h3>
+                    <p>{{ blog.body }}</p>
+                    <p>Views: {{ blog.views }}</p>
+                    <p>Likes: {{ blog.total_likes }}</p>
+                    {% for comment in blog.comments.all %}
+                        <p>{{ comment.comment_text }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ blog.title }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>{{ blog.title }}</h1>
+        <p>{{ blog.body }}</p>
+        <span class="badge badge-primary">{{ blog.total_likes }} Likes</span>
+        <span class="badge badge-secondary">{{ blog.comments.count }} Comments</span>
+        <span class="badge badge-success">{{ blog.views }} Views</span>
+        <a href="{% url 'like_blog' blog.pk %}" class="btn btn-warning">{% if user in blog.likes.all %}Unlike{% else %}Like{% endif %}</a>
+        <hr>
+        <h4>Comments</h4>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea class="form-control" name="comment_text" rows="3" placeholder="Add a comment"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <ul class="list-unstyled mt-3">
+            {% for comment in blog.comments.all %}
+                <li class="media">
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">{{ comment.author.username }}</h5>
+                        {{ comment.comment_text }}
+                        <small class="text-muted">{{ comment.pub_date }}</small>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

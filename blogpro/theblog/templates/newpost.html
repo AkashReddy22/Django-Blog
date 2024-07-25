@@ -1,0 +1,40 @@
+<!-- Page for creating new posts -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Post</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- New post form -->
+        <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+            {% csrf_token %}  <!-- CSRF token for security -->
+            <h3>New Post</h3>
+            <hr>
+            <!-- Title input field -->
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp"
+                    placeholder="Enter title" required>
+            </div>
+            <!-- Body input field -->
+            <div class="form-group">
+                <label for="body">Body</label>
+                <textarea class="form-control" name="body" id="body" rows="5" placeholder="Enter body" required></textarea>
+            </div>
+            <!-- Image input field -->
+            <!-- <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" class="form-control-file" name="image" id="image">
+            </div> -->
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
